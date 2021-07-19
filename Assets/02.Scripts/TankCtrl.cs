@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Cinemachine;
 using Photon.Pun;
 
@@ -13,6 +14,7 @@ public class TankCtrl : MonoBehaviour
     private CinemachineVirtualCamera vcam;
 
     public float speed = 10.0f;
+    public TMP_Text nickNameText;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,8 @@ public class TankCtrl : MonoBehaviour
         {
             rb.isKinematic = true;
         }
+
+        nickNameText.text = pv.Owner.NickName;
     }
 
     void Update()
