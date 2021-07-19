@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using Photon.Pun;
 
 public class TankCtrl : MonoBehaviour
@@ -8,6 +9,8 @@ public class TankCtrl : MonoBehaviour
     private Transform tr;
     private PhotonView pv;
     private Rigidbody rb;
+
+    private CinemachineVirtualCamera vcam;
 
     public float speed = 10.0f;
 
@@ -17,9 +20,15 @@ public class TankCtrl : MonoBehaviour
         tr = GetComponent<Transform>();
         pv = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
+        vcam = GameObject.Find("VCam").GetComponent<CinemachineVirtualCamera>();
+
+        rb.mass = 1000.0f;
 
         if (pv.IsMine)
         {
+            vcam.Follow = tr;
+            vcam.LookAt = tr;
+
             rb.centerOfMass = new Vector3(0, -5.0f, 0);
         }
         else
