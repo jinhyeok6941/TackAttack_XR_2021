@@ -7,6 +7,7 @@ public class TankCtrl : MonoBehaviour
 {
     private Transform tr;
     private PhotonView pv;
+    private Rigidbody rb;
 
     public float speed = 10.0f;
 
@@ -15,6 +16,16 @@ public class TankCtrl : MonoBehaviour
     {
         tr = GetComponent<Transform>();
         pv = GetComponent<PhotonView>();
+        rb = GetComponent<Rigidbody>();
+
+        if (pv.IsMine)
+        {
+            rb.centerOfMass = new Vector3(0, -5.0f, 0);
+        }
+        else
+        {
+            rb.isKinematic = true;
+        }
     }
 
     void Update()
