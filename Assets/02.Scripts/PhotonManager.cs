@@ -122,6 +122,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     roomDict.Add(room.Name, _room);
                 }
                 //  2. 기존에 생성된 룸일 경우 --> 룸 정보를 갱신
+                else
+                {
+                    // 룸 정보를 갱신
+                    roomDict.TryGetValue(room.Name, out tempRoom);
+                    tempRoom.GetComponent<RoomData>().RoomInfo = room;
+                }
             }
 
 
