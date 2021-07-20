@@ -14,7 +14,7 @@ public class TankCtrl : MonoBehaviour
     private CinemachineVirtualCamera vcam;
     private new Camera camera;
     private Ray ray;
-    private RaycastHit hit
+    private RaycastHit hit;
     public Transform turretTr;
 
     public float speed = 10.0f;
