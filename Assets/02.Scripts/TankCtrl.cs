@@ -12,6 +12,9 @@ public class TankCtrl : MonoBehaviour
     private Rigidbody rb;
 
     private CinemachineVirtualCamera vcam;
+    private new Camera camera;
+    private Ray ray;
+    private RaycastHit hit;
 
     public float speed = 10.0f;
     public TMP_Text nickNameText;
@@ -23,6 +26,7 @@ public class TankCtrl : MonoBehaviour
         pv = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
         vcam = GameObject.Find("VCam").GetComponent<CinemachineVirtualCamera>();
+        camera = Camera.main;
 
         rb.mass = 1000.0f;
 
@@ -50,6 +54,9 @@ public class TankCtrl : MonoBehaviour
 
             tr.Translate(Vector3.forward * Time.deltaTime * speed * v);
             tr.Rotate(Vector3.up * Time.deltaTime * 100.0f * h);
+
+            ray = camera.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction * 30.0f, Color.blue);
         }
     }
 }
