@@ -87,7 +87,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
-    public void MakeRoomClick()
+    public void OnMakeRoomClick()
     {
         // 룸 속성을 정의
         RoomOptions ro = new RoomOptions();
