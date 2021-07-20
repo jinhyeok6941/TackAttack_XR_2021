@@ -129,8 +129,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     tempRoom.GetComponent<RoomData>().RoomInfo = room;
                 }
             }
-
-
         }
     }
 
