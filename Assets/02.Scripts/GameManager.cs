@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text messageText;
     public TMP_Text connectInfoText;
 
+    public TMP_InputField chatMsg;
+
     void Awake()
     {
         Vector3 pos = new Vector3(Random.Range(-150.0f, 150.0f), 0.0f, Random.Range(-150.0f, 150.0f));
@@ -26,6 +28,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void OnSendClick()
+    {
+        string _msg = $"<color=#00ff00>[{PhotonNetwork.NickName}]</color> {chatMsg.text}";
+
+    }
+
+    [PunRPC]
+    void SendChatMessage(string msg)
+    {
+        messageText.text += msg;
     }
 
     // 룸에서 종료된 후 (CleanUP)
