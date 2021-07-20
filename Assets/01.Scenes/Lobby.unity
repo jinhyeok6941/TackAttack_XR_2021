@@ -728,7 +728,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 301073253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1573681864}
+        m_TargetAssemblyTypeName: PhotonManager, Assembly-CSharp
+        m_MethodName: OnMakeRoomClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &301073253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,7 +1586,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 744675327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1573681864}
+        m_TargetAssemblyTypeName: PhotonManager, Assembly-CSharp
+        m_MethodName: OnRandomJoinClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &744675327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3056,6 +3080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ebf38f5ac374690b23a5e3e6377ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickName: {fileID: 845717083}
+  roomName: {fileID: 1163173103}
 --- !u!4 &1573681865
 Transform:
   m_ObjectHideFlags: 0

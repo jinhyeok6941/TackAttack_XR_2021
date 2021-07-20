@@ -40,7 +40,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("로비에 입장");
 
-        PhotonNetwork.JoinRandomRoom();
+        // PhotonNetwork.JoinRandomRoom();
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
