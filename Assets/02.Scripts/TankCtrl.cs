@@ -43,12 +43,12 @@ public class TankCtrl : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        nickNameText.text = pv.Owner.NickName;
+        //nickNameText.text = pv.Owner.NickName;
     }
 
     void Update()
     {
-        if (pv.IsMine == true)
+        //if (pv.IsMine == true)
         {
             float v = Input.GetAxis("Vertical");
             float h = Input.GetAxis("Horizontal");
@@ -57,11 +57,13 @@ public class TankCtrl : MonoBehaviour
             tr.Rotate(Vector3.up * Time.deltaTime * 100.0f * h);
 
             ray = camera.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(ray.origin, ray.direction * 30.0f, Color.blue);
+            Debug.DrawRay(ray.origin, ray.direction * 1000.0f, Color.blue);
 
-            if (Physics.Raycast(ray, out hit, 100.0f, 1 << 8))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
             {
-                var rot = Quaternion.LookRotation(hit.point - turretTr.position);
+                Vector3 hitPos = new Vector3(hit.point.x, turretTr.position.y, hit.point.z);
+
+                var rot = Quaternion.LookRotation(hitPos - turretTr.position);
 
                 turretTr.rotation = Quaternion.Slerp(turretTr.rotation, rot, Time.deltaTime * 5.0f);
             }

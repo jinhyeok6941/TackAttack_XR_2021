@@ -833,6 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dfa3fedb2d54261a78c97621a8701a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turretTr: {fileID: 3281429924904814247}
   speed: 20
   nickNameText: {fileID: 8298178975896807622}
 --- !u!114 &3281429925389989578

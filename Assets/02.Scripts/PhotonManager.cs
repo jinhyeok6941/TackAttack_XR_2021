@@ -19,6 +19,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 유저명 지정
         PhotonNetwork.NickName = userId;
 
+        // PhotonNetwork.OfflineMode = true;
+
         // 접속
         // PhotonNetwork.ConnectUsingSettings();
     }
