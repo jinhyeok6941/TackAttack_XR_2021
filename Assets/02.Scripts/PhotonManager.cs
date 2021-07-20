@@ -117,6 +117,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     // 룸 생성
                     GameObject _room = Instantiate(roomPrefab, scrollContents);
                     // 룸 정보를 표시
+                    _room.GetComponent<RoomData>().RoomInfo = room;
                     // 딕셔너리에 추가
                     roomDict.Add(room.Name, _room);
                 }
