@@ -14,7 +14,7 @@ public class TankCtrl : MonoBehaviour
     private CinemachineVirtualCamera vcam;
     private new Camera camera;
     private Ray ray;
-    private RaycastHit hit;
+    private RaycastHit hit
     public Transform turretTr;
 
     public float speed = 10.0f;
@@ -22,6 +22,7 @@ public class TankCtrl : MonoBehaviour
 
     public Transform firePos;
     public GameObject cannonPrefab;
+    public GameObject expEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -86,5 +87,15 @@ public class TankCtrl : MonoBehaviour
     {
         var cannon = Instantiate(cannonPrefab, firePos.position, firePos.rotation);
         Destroy(cannon, 5.0f);
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.CompareTag("CANNON"))
+        {
+            Destroy(coll.gameObject);
+            var obj = Instantiate(expEffect, coll.transform.position, Quaternion.identity);
+            Destroy(obj, 5.0f);
+        }
     }
 }
