@@ -33,7 +33,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.OfflineMode = true;
 
         // 접속
-        PhotonNetwork.ConnectUsingSettings();
+        if (PhotonNetwork.IsConnected == false)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+        }
     }
 
     void Start()
