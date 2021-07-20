@@ -15,6 +15,7 @@ public class TankCtrl : MonoBehaviour
     private new Camera camera;
     private Ray ray;
     private RaycastHit hit;
+    public Transform turretTr;
 
     public float speed = 10.0f;
     public TMP_Text nickNameText;
@@ -57,6 +58,13 @@ public class TankCtrl : MonoBehaviour
 
             ray = camera.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, ray.direction * 30.0f, Color.blue);
+
+            if (Physics.Raycast(ray, out hit, 100.0f, 1 << 8))
+            {
+                var rot = Quaternion.LookRotation(hit.point - turretTr.position);
+
+                turretTr.rotation = Quaternion.Slerp(turretTr.rotation, rot, Time.deltaTime * 5.0f);
+            }
         }
     }
 }
