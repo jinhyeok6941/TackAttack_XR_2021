@@ -89,7 +89,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void MakeRoomClick()
     {
+        // 룸 속성을 정의
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = ro.IsVisible = true; // 오픈여부, 노출여부를 설정
+        ro.MaxPlayers = 100;             // 동접사용자 수 설정
 
+        if (string.IsNullOrEmpty(roomName.text))
+        {
+            roomName.text = $"ROOM_{Random.Range(0, 100):00}";
+        }
+
+        // 룸생성
+        PhotonNetwork.CreateRoom(roomName.text, ro);
     }
     #endregion
 
