@@ -89,6 +89,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             userId = $"USER_{Random.Range(0, 100):00}";
             nickName.text = userId;
         }
+        PlayerPrefs.SetString("USER_ID", nickName.text);
 
         PhotonNetwork.NickName = nickName.text;
         PhotonNetwork.JoinRandomRoom();
