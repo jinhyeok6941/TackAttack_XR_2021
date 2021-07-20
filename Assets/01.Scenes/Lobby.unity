@@ -3690,6 +3690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nickName: {fileID: 845717083}
   roomName: {fileID: 1163173103}
+  roomPrefab: {fileID: 1548167771915040982, guid: 15e5bc4685ad843eeb510fe09ea0a161, type: 3}
+  scrollContents: {fileID: 847743674}
 --- !u!4 &1573681865
 Transform:
   m_ObjectHideFlags: 0

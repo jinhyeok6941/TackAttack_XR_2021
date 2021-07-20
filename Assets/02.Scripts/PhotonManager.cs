@@ -90,11 +90,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
     }
 
+    // 룸 목록이 변경되면 호출되는 콜백
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        GameObject tempRoom = null;
+
         foreach (var room in roomList)
         {
-            Debug.Log($"room name ={room.Name} , player ={room.PlayerCount}/{room.MaxPlayers}");
+            //Debug.Log($"room name ={room.Name} , player ={room.PlayerCount}/{room.MaxPlayers}");
+
+            // 룸이 삭제된 경우 --> 딕셔너리 제거
+
+
+            // 룸 정보를 갱신(변경)
+            //  1. 처음 생성된 룸일 경우 --> 딕셔너리에 추가
+            //  2. 기존에 생성된 룸일 경우 --> 룸 정보를 갱신
         }
     }
 
