@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Instantiate("Tank", pos, Quaternion.identity, 0);
     }
 
+    void Start()
+    {
+        var roomInfo = PhotonNetwork.CurrentRoom;
+        connectInfoText.text = $"({roomInfo.PlayerCount}/{roomInfo.MaxPlayers})";
+    }
+
     public void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
@@ -32,12 +38,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         string msg = $"\n<color=#00ff00>{newPlayer.NickName}</color> is joined room";
         messageText.text += msg;
+
+        var roomInfo = PhotonNetwork.CurrentRoom;
+        connectInfoText.text = $"({roomInfo.PlayerCount}/{roomInfo.MaxPlayers})";
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         string msg = $"\n<color=#ff0000>{otherPlayer.NickName}</color> is left room";
         messageText.text += msg;
+
+        var roomInfo = PhotonNetwork.CurrentRoom;
+        connectInfoText.text = $"({roomInfo.PlayerCount}/{roomInfo.MaxPlayers})";
     }
 
 }
