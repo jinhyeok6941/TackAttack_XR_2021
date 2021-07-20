@@ -40,12 +40,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void SendChatMessage(string msg)
+    public void SendChatMessage(string msg)
     {
         messageText.text += msg;
     }
 
-    // ë£¸ì—ì„œ ì¢…ë£Œëœ í›„ (CleanUP)
+    // ë£¸ì—?„œ ì¢…ë£Œ?œ ?›„ (CleanUP)
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Lobby");
