@@ -84,7 +84,8 @@ public class TankCtrl : MonoBehaviour, IPunObservable
         }
         else
         {
-
+            tr.position = Vector3.Lerp(tr.position, currPos, Time.deltaTime * 20.0f);
+            tr.rotation = Quaternion.Slerp(tr.rotation, currRot, Time.deltaTime * 20.0f);
         }
     }
 
