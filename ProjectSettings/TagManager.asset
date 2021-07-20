@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Explosion
   - FLOOR
+  - CANNON
   layers:
   - Default
   - TransparentFX

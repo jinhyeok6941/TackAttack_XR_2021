@@ -20,6 +20,9 @@ public class TankCtrl : MonoBehaviour
     public float speed = 10.0f;
     public TMP_Text nickNameText;
 
+    public Transform firePos;
+    public GameObject cannonPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
