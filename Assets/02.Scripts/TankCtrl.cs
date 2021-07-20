@@ -5,7 +5,7 @@ using TMPro;
 using Cinemachine;
 using Photon.Pun;
 
-public class TankCtrl : MonoBehaviour
+public class TankCtrl : MonoBehaviour, IPunObservable
 {
     private Transform tr;
     private PhotonView pv;
@@ -23,6 +23,9 @@ public class TankCtrl : MonoBehaviour
     public Transform firePos;
     public GameObject cannonPrefab;
     public GameObject expEffect;
+
+    private Vector3 currPos;
+    private Quaternion currRot;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,10 @@ public class TankCtrl : MonoBehaviour
                 pv.RPC("Fire", RpcTarget.Others, null);
             }
         }
+        else
+        {
+
+        }
     }
 
     // RPC (Remote Procedure Call) 원격으로 분리된 다른 PC, 모바일에 탑재된 같은 앱의 특정 함수(Procedure) 호출
@@ -96,6 +103,22 @@ public class TankCtrl : MonoBehaviour
             Destroy(coll.gameObject);
             var obj = Instantiate(expEffect, coll.transform.position, Quaternion.identity);
             Destroy(obj, 5.0f);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // 송신
+            stream.SendNext(tr.position);
+            stream.SendNext(tr.rotation);
+        }
+        else
+        {
+            // 수신
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
         }
     }
 }
