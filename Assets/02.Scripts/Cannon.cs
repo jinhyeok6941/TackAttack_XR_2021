@@ -7,7 +7,7 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 1200.0f);
+        GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 2500.0f);
     }
 
 

@@ -71,9 +71,12 @@ public class TankCtrl : MonoBehaviour
                 turretTr.rotation = Quaternion.Slerp(turretTr.rotation, rot, Time.deltaTime * 5.0f);
             }
 
-            // 포탄 발사로직
-            Fire();
-            pv.RPC("Fire", RpcTarget.Others, null);
+            if (Input.GetMouseButtonDown(0))
+            {
+                // 포탄 발사로직
+                Fire();
+                pv.RPC("Fire", RpcTarget.Others, null);
+            }
         }
     }
 
