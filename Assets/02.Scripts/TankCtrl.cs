@@ -27,6 +27,8 @@ public class TankCtrl : MonoBehaviour, IPunObservable
     private Vector3 currPos;
     private Quaternion currRot;
 
+    private float hp = 100.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,7 +86,14 @@ public class TankCtrl : MonoBehaviour, IPunObservable
         }
         else
         {
-            tr.position = Vector3.Lerp(tr.position, currPos, Time.deltaTime * 20.0f);
+            if (Vector3.Distance(tr.position, currPos) >= 2.0f)
+            {
+                tr.position = currPos;
+            }
+            else
+            {
+                tr.position = Vector3.Lerp(tr.position, currPos, Time.deltaTime * 20.0f);
+            }
             tr.rotation = Quaternion.Slerp(tr.rotation, currRot, Time.deltaTime * 20.0f);
         }
     }
@@ -104,6 +113,33 @@ public class TankCtrl : MonoBehaviour, IPunObservable
             Destroy(coll.gameObject);
             var obj = Instantiate(expEffect, coll.transform.position, Quaternion.identity);
             Destroy(obj, 5.0f);
+
+            hp -= 20.0f;
+            if (hp <= 0.0f)
+            {
+                StartCoroutine(TankDie());
+            }
+        }
+    }
+
+    IEnumerator TankDie()
+    {
+        TankVisible(false);
+        yield return new WaitForSeconds(3.0f);
+
+        Vector3 pos = new Vector3(Random.Range(-150.0f, 150.0f), 0.0f, Random.Range(-150.0f, 150.0f));
+        tr.position = pos;
+        hp = 100.0f;
+        TankVisible(true);
+    }
+
+
+    void TankVisible(bool visible)
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (var renderer in renderers)
+        {
+            renderer.enabled = visible;
         }
     }
 
