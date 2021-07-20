@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     private readonly string gameVersion = "v1.0";
     private string userId = "Zackiller";
+
+    public TMP_InputField nickName;
+    public TMP_InputField roomName;
 
     void Awake()
     {
@@ -63,12 +67,32 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("방입장 완료");
 
 
-        // 방장일 경우에 전투 씬을 호출(로딩)
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("BattleField");
-        }
+        // // 방장일 경우에 전투 씬을 호출(로딩)
+        // if (PhotonNetwork.IsMasterClient)
+        // {
+        //     PhotonNetwork.LoadLevel("BattleField");
+        // }
     }
+
+    #region UI_BUTTON_CALLBACK
+    public void OnRandomJoinClick()
+    {
+        if (string.IsNullOrEmpty(nickName.text))
+        {
+            userId = $"USER_{Random.Range(0, 100):00}";
+            nickName.text = userId;
+        }
+
+        PhotonNetwork.NickName = nickName.text;
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public void MakeRoomClick()
+    {
+
+    }
+    #endregion
+
 
 
 }
