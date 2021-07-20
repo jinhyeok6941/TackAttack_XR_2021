@@ -20,13 +20,19 @@ public class RoomData : MonoBehaviour
         {
             _roomInfo = value;
             roomInfoText.text = $"{_roomInfo.Name} ({_roomInfo.PlayerCount}/{_roomInfo.MaxPlayers})";
+            //버튼의 클릭 이벤트에 함수를 연결
+            GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnEnterRoom(_roomInfo.Name));
         }
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         roomInfoText = GetComponentInChildren<TMP_Text>();
     }
+
+    void OnEnterRoom(string roomName)
+    {
+        PhotonNetwork.JoinRoom(roomName);
+    }
+
 }
