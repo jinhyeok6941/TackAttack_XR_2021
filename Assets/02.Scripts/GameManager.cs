@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -17,9 +18,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
-    // ë£¸ì—ì„œ ì¢…ë£Œëœ í›„ (CleanUP)
+    // ë£¸ì—?„œ ì¢…ë£Œ?œ ?›„ (CleanUP)
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Lobby");
     }
+
+    // public override void OnPlayerEnteredRoom(Player newPlayer)
+    // {
+    //     string msg = $"\n<color=#00ff00>{newPlayer}";
+    // }
 }
