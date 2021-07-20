@@ -13,6 +13,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public TMP_InputField nickName;
     public TMP_InputField roomName;
 
+    // 룸 목록을 저장할 딕셔너리 자료
+
     void Awake()
     {
         // 방장이 호출한 씬을 다른 클라이언트들은 자동으로 호출(로딩)시키는 옵션
@@ -21,6 +23,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 게임 버전 지정
         PhotonNetwork.GameVersion = gameVersion;
 
+        // 유저명 지정
+        PhotonNetwork.NickName = userId;
         //PhotonNetwork.OfflineMode = true;
 
         // 접속
@@ -80,6 +84,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LoadLevel("BattleField");
         }
     }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        foreach (var room in roomList)
+        {
+            Debug.Log($"room name ={room.Name} , player ={room.PlayerCount}/{room.MaxPlayers}");
+        }
+    }
+
+
 
     #region UI_BUTTON_CALLBACK
     public void OnRandomJoinClick()
