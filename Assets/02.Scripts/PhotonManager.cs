@@ -14,7 +14,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public TMP_InputField roomName;
 
     // 룸 목록을 저장할 딕셔너리 자료 
-    private Dictionary<string, GameObject> roomData = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> roomDict = new Dictionary<string, GameObject>();
     // 룸 생성을 위한 프리팹
     public GameObject roomPrefab;
     // RoomItem 프래핍을 생성할 페어린트
@@ -100,11 +100,30 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             //Debug.Log($"room name ={room.Name} , player ={room.PlayerCount}/{room.MaxPlayers}");
 
             // 룸이 삭제된 경우 --> 딕셔너리 제거
+            if (room.RemovedFromList == true)
+            {
+                //딕셔너리에서 검색
+                roomDict.TryGetValue(room.Name, out tempRoom);
+                // RoomItem 삭제
+                Destroy(tempRoom);
+                // 딕셔너리에서 데이를 삭제
+                roomDict.Remove(room.Name);
+            }
+            else // 룸 정보를 갱신(변경)
+            {
+                //  1. 처음 생성된 룸일 경우 --> 딕셔너리에 추가
+                if (roomDict.ContainsKey(room.Name) == false)
+                {
+                    // 룸 생성
+                    GameObject _room = Instantiate(roomPrefab, scrollContents);
+                    // 룸 정보를 표시
+                    // 딕셔너리에 추가
+                    roomDict.Add(room.Name, _room);
+                }
+                //  2. 기존에 생성된 룸일 경우 --> 룸 정보를 갱신
+            }
 
 
-            // 룸 정보를 갱신(변경)
-            //  1. 처음 생성된 룸일 경우 --> 딕셔너리에 추가
-            //  2. 기존에 생성된 룸일 경우 --> 룸 정보를 갱신
         }
     }
 
