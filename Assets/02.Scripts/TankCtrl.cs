@@ -43,12 +43,12 @@ public class TankCtrl : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        //nickNameText.text = pv.Owner.NickName;
+        nickNameText.text = pv.Owner.NickName;
     }
 
     void Update()
     {
-        //if (pv.IsMine == true)
+        if (pv.IsMine == true)
         {
             float v = Input.GetAxis("Vertical");
             float h = Input.GetAxis("Horizontal");

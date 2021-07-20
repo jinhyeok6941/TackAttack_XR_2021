@@ -22,7 +22,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // PhotonNetwork.OfflineMode = true;
 
         // 접속
-        // PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
