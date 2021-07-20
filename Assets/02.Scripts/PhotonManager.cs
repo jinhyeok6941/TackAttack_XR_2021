@@ -20,13 +20,20 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         // 게임 버전 지정
         PhotonNetwork.GameVersion = gameVersion;
-        // 유저명 지정
-        PhotonNetwork.NickName = userId;
 
-        // PhotonNetwork.OfflineMode = true;
+        //PhotonNetwork.OfflineMode = true;
 
         // 접속
         PhotonNetwork.ConnectUsingSettings();
+    }
+
+    void Start()
+    {
+        userId = PlayerPrefs.GetString("USER_ID", $"USER_{Random.Range(0, 100):00}");
+        nickName.text = userId;
+
+        // 유저명 지정
+        PhotonNetwork.NickName = userId;
     }
 
     public override void OnConnectedToMaster()
