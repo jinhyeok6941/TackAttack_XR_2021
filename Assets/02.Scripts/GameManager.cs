@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public TMP_InputField chatMsg;
 
+    private PhotonView pv;
+
     void Awake()
     {
         Vector3 pos = new Vector3(Random.Range(-150.0f, 150.0f), 0.0f, Random.Range(-150.0f, 150.0f));
         PhotonNetwork.Instantiate("Tank", pos, Quaternion.identity, 0);
+        pv = GetComponent<PhotonView>();
     }
 
     void Start()
@@ -32,8 +35,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void OnSendClick()
     {
-        string _msg = $"<color=#00ff00>[{PhotonNetwork.NickName}]</color> {chatMsg.text}";
-
+        string _msg = $"\n<color=#00ff00>[{PhotonNetwork.NickName}]</color> {chatMsg.text}";
+        pv.RPC("SendChatMessage", RpcTarget.AllBufferedViaServer, _msg);
     }
 
     [PunRPC]
