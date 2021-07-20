@@ -61,8 +61,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("방입장 완료");
-        Vector3 pos = new Vector3(Random.Range(-50.0f, 50.0f), 0.0f, Random.Range(-50.0f, 50.0f));
-        PhotonNetwork.Instantiate("Tank", pos, Quaternion.identity, 0);
+
+
+        // 방장일 경우에 전투 씬을 호출(로딩)
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("BattleField");
+        }
     }
 
 

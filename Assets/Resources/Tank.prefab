@@ -916,6 +916,7 @@ MonoBehaviour:
   nickNameText: {fileID: 8298178975896807622}
   firePos: {fileID: 1681305371}
   cannonPrefab: {fileID: 856460909549906035, guid: 225fb1e25f1e946ccb5298e1a8eef9c9, type: 3}
+  expEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
 --- !u!114 &3281429925389989578
 MonoBehaviour:
   m_ObjectHideFlags: 0
