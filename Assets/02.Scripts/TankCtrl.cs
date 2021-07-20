@@ -70,6 +70,18 @@ public class TankCtrl : MonoBehaviour
 
                 turretTr.rotation = Quaternion.Slerp(turretTr.rotation, rot, Time.deltaTime * 5.0f);
             }
+
+            // 포탄 발사로직
+            Fire();
+            pv.RPC("Fire", RpcTarget.Others, null);
         }
+    }
+
+    // RPC (Remote Procedure Call) 원격으로 분리된 다른 PC, 모바일에 탑재된 같은 앱의 특정 함수(Procedure) 호출
+    [PunRPC]
+    void Fire()
+    {
+        var cannon = Instantiate(cannonPrefab, firePos.position, firePos.rotation);
+        Destroy(cannon, 5.0f);
     }
 }
