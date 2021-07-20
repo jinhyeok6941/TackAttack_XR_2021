@@ -67,11 +67,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("방입장 완료");
 
 
-        // // 방장일 경우에 전투 씬을 호출(로딩)
-        // if (PhotonNetwork.IsMasterClient)
-        // {
-        //     PhotonNetwork.LoadLevel("BattleField");
-        // }
+        // 방장일 경우에 전투 씬을 호출(로딩)
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("BattleField");
+        }
     }
 
     #region UI_BUTTON_CALLBACK
