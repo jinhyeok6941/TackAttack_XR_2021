@@ -13,7 +13,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public TMP_InputField nickName;
     public TMP_InputField roomName;
 
-    // 룸 목록을 저장할 딕셔너리 자료
+    // 룸 목록을 저장할 딕셔너리 자료 
+    private Dictionary<string, GameObject> roomData = new Dictionary<string, GameObject>();
+    // 룸 생성을 위한 프리팹
+    public GameObject roomPrefab;
+    // RoomItem 프래핍을 생성할 페어린트
+    public Transform scrollContents;
 
     void Awake()
     {
